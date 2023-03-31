@@ -33,14 +33,14 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
     <h4>Lives Left : <?php echo $_SESSION['user_lives']; ?></h4>
     <?php 
         if($_SESSION['user_lives']>=1){
-            if($_SESSION['result']=="level1"){
+            if($_SESSION['result']=="level2"){
                 ?>
-                <h3 style="color:Blue;">You pass the Level 1 "Ascending alphabet"
+                <h3 style="color:Blue;">You pass the Level 2 "Descending alphabet"
         <!-- <a href="home.php">
             play again Level 1
         </a> -->
         <a href="level2.php">
-            Go to Level 2 "Descending Alphabet"
+            Go to Level 3 "Ascending Numbers"
         </a></h3>
                 <?php
             }
@@ -48,10 +48,10 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
             
             ?>
-            <h3 style="color:Blue;">Arrange letters in alphabetical order:</h3>
+            <h3 style="color:Blue;">Arrange letters in Descending alphabetical order:</h3>
             <h2  style="color:red;"><?php $letter_display = random_chars(); echo $letter_display; ?></h2>
 
-            <form method="post" action="level1.php" id ="gameLevel1">
+            <form method="post" action="level2data.php" id ="gameLevel2">
                 <input type="hidden" name="letters_display" value="<?php echo $letter_display; ?>"/>
                 <label for="letters">Enter your answer:</label>
                 <input type="text" id="letters" name="letters" required>
