@@ -18,21 +18,21 @@ if(isset($_POST['submit'])){
     // print_r($user_ip);
 
     $sorted_ans = $letters_display;
-    sort($sorted_ans);
+    rsort($sorted_ans);
     echo "<br/>";
     // print_r($sorted_ans);
 
     if($_SESSION['user_lives']>=1){
         if($user_ip == $sorted_ans){
-            $_SESSION['result']= "level1";
+            $_SESSION['result']= "level2";
             $_SESSION['scoreTime']= date("Y-m-d H:i:s");
             echo "win";
-            header("Location: home.php");
+            header("Location: level2.php");
         }
         else{
             $_SESSION['user_lives'] = $_SESSION['user_lives']-1;
             //echo "lives left".$_SESSION['user_lives'] ;
-            header("Location: home.php");
+            header("Location: level2.php");
         }
     }
     else{
