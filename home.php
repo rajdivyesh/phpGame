@@ -24,14 +24,54 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
     </div>
 
     <div class="right">
-     <label><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> logout</a></label>
+     <label><?php print($userRow['userName']); ?><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> logout</a></label>
     </div>
  </div>
 <div class="content">
-Welcome : <?php print($userRow['userName']); ?>
 
 
+    <h4>Lives Left : <?php echo $_SESSION['user_lives']; ?></h4>
+    <?php 
+        if($_SESSION['user_lives']>=1){
+            if($_SESSION['result']=="incomplete"){
+                ?>
+                <h3 style="color:Blue;">You pass the Level 1 "Ascending alphabet"
+        <!-- <a href="home.php">
+            play again Level 1
+        </a> -->
+        <a href="level2.php">
+            Go to Level 2 "Descending Alphabet"
+        </a></h3>
+                <?php
+            }
+            else{
 
+            
+            ?>
+            <h3 style="color:Blue;">Arrange letters in alphabetical order:</h3>
+            <h2  style="color:red;"><?php $letter_display = random_chars(); echo $letter_display; ?></h2>
+
+            <form method="post" action="level1.php" id ="gameLevel1">
+                <input type="hidden" name="letters_display" value="<?php echo $letter_display; ?>"/>
+                <label for="letters">Enter your answer:</label>
+                <input type="text" id="letters" name="letters" required>
+                <br>
+                <input type="submit" value="Submit" name="submit">
+            </form>
+            <?php
+            }
+        }
+        else{
+            $_SESSION['user_lives']=6;
+            ?>
+        <h3 style="color:Blue;">You lost the game please try again
+        <a href="home.php">
+            Restart Game
+        </a></h3>
+            <?php
+        }
+    ?>
+	
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -39,10 +79,10 @@ Welcome : <?php print($userRow['userName']); ?>
 </body>
 </html>
 <?php
-function random_chars($length = 12)
+function random_chars()
 {
-    $chars      = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_?,.";
-    $rand_chars = substr( str_shuffle( $chars ), 0, $length );
+    $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $rand_chars = substr( str_shuffle( $chars ), 0,6 );
     return $rand_chars;
 }
 ?>

@@ -4,12 +4,8 @@
 body 
 {
         padding-bottom: 40px;
-        /* background-color: #f7f7f7; */
-        color: #000;
-        overflow-x: hidden;
-        height: 100%;
-        background-color: hsla(193, 100%, 41%, 0.535);;
-        background-repeat: no-repeat
+        background-color: #f7f7f7;
+    
 }
 .container
 {

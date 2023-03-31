@@ -1,6 +1,7 @@
 <?php
 class USER
 {
+    
     private $db;
  
     function __construct($DB_con)
@@ -62,6 +63,9 @@ class USER
                 {
                     echo "passwordverification";
                     $_SESSION['user_session'] = $userRow['registrationOrder'];
+                    $_SESSION['user_lives']=6;
+                    $_SESSION['result']= "";
+                    $_SESSION['scoreTime']="";
                     return true;
                 }
                 else
@@ -92,6 +96,8 @@ class USER
     {
         session_destroy();
         unset($_SESSION['user_session']);
+        unset($_SESSION['user_lives']);
+        unset($_SESSION['result']);
         return true;
     }
 
