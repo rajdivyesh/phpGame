@@ -66,6 +66,7 @@ class USER
                     $_SESSION['user_lives']=6;
                     $_SESSION['result']= "";
                     $_SESSION['scoreTime']="";
+                    $error = "";
                     return true;
                 }
                 else
