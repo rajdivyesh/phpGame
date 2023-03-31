@@ -112,3 +112,48 @@ a
   text-decoration: underline;
 }
       
+
+
+
+
+/* password modification */
+.password-modification {
+        width: 500px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 25px;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+        border-radius: 3px;
+        font-family: Tahoma, Geneva, sans-serif;
+      }
+      
+      .password-modification label {
+        display: block;
+        margin-bottom: 5px;
+        color: #00a2d1;
+      }
+      
+      .password-modification input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+        color: #333;
+      }
+      
+      .password-modification button[type="submit"] {
+        background-color: #00a2d1;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      
+      .password-modification button[type="submit"]:hover {
+        background-color: #0092bf;
+      }
+      
