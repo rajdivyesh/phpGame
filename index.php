@@ -58,6 +58,7 @@ if(isset($_POST['btn-login']))
             </div>
             <br />
             <label>Don't have account yet ! <a href="register.php">Sign Up</a></label>
+            <label class="forgot-password"> <a href="passModification.php">Forgot password?</a></label>
         </form>
        </div>
 </div>
