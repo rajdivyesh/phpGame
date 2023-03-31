@@ -1,39 +1,24 @@
+
 <?php
+require_once 'dbconfig.php';
 
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
-    $current_password = $_POST["current_password"];
-    $new_password = $_POST["new_password"];
-    $confirm_password = $_POST["confirm_password"];
-
-    // Validate form data
-    $errors = array();
-    if (empty($current_password)) {
-        $errors[] = "Current password is required";
-    }
-    if (empty($new_password)) {
-        $errors[] = "New password is required";
-    }
-    if (empty($confirm_password)) {
-        $errors[] = "Confirm password is required";
-    }
-    if ($new_password != $confirm_password) {
-        $errors[] = "New password and confirm password must match";
-    }
-
-    // If there are no errors, update the password in the database
-    if (empty($errors)) {
-        // Here you would typically write code to update the password in your database
-        // If the password was successfully updated, redirect the user to a confirmation page
-        header("Location: passwordModified.php");
-        exit;
-    }
+if(isset($_POST['btn-save']))
+{
+ $uname = $_POST['txt_uname'];
+ $upass = $_POST['txt_password'];
+ $newpass = $_POST['txt_newpassword'];
+  
+ if($user->update_password($uname, $upass, $newpass))
+ {
+  $user->redirect('index.php');
+ }
+ else
+ {
+  $error = "Wrong Details !";
+ } 
 }
-
 ?>
 
-<!-- HTML code for the password modification form -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -44,33 +29,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div class="container">
-    <div class="password-modification"
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <h2>Modify Password</h2><hr />
-            <label for="current_password">Current password:</label>
-            <input type="password" name="current_password" id="current_password">
+    <div class="row">
+        <div class="password-modification">
+            <form role="form" method="post">
+                <fieldset>
+                    <h2>Forgot Password</h2><hr/>
 
-            <label for="new_password">New password:</label>
-            <input type="password" name="new_password" id="new_password">
+                    <?php if(isset($error)) { ?>
+                      <div class="alert alert-danger">
+                        <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
+                      </div>
+                    <?php } ?>
 
-            <label for="confirm_password">Confirm password:</label>
-            <input type="password" name="confirm_password" id="confirm_password">
+                    <div class="form-group">
+                        <label for="uname">Username</label>
+                        <input type="text" name="txt_uname" placeholder="Username" required class="form-control" id="username"/>
+                    </div>
 
-            <button type="submit">Change password</button>
-        </form>
+                    <div class="form-group">
+                        <label for="password">Old Password</label>
+                        <input type="password" name="txt_password" placeholder="Old Password" required class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newpassword">New Password</label>
+                        <input type="password" name="txt_newpassword" placeholder="New Password" required class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="btn-save" value="Save" class="btn btn-primary" />
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
-    </div>
-    <?php
-    // If there are errors, display them to the user
-    if (!empty($errors)) {
-        echo "<ul>";
-        foreach ($errors as $error) {
-            echo "<li>" . $error . "</li>";
-        }
-        echo "</ul>";
-    }
-
-    ?>
+</div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>

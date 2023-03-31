@@ -76,6 +76,45 @@ class USER
         }
     }
 
+    public function update_password($uname,$upass,$newpass)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("SELECT * FROM player WHERE userName=:uname LIMIT 1");
+            $stmt->execute(array(':uname'=>$uname));
+            $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if($stmt->rowCount() > 0)
+            {
+                $regOrder = $userRow['registrationOrder'];
+                $stmt = $this->db->prepare("SELECT * FROM authenticator WHERE registrationOrder=:registerationOrder");
+                $stmt->execute(array(':registerationOrder'=>$regOrder));
+                $passRow=$stmt->fetch(PDO::FETCH_ASSOC);
+    
+                if(password_verify($upass, $passRow['passCode']))
+                {
+                    $new_password = password_hash($newpass, PASSWORD_DEFAULT);
+                    $sql = "UPDATE authenticator SET passCode = :new_password WHERE registrationOrder = :regOrder";
+                    $stmt = $this->db->prepare($sql);
+                    $stmt->bindparam(':new_password', $new_password);
+                    $stmt->bindparam(':regOrder', $regOrder);
+                    $stmt->execute();
+    
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+        
+
     public function is_loggedin()
     {
         if(isset($_SESSION['user_session']))

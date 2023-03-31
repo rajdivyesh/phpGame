@@ -142,6 +142,16 @@ a
         font-size: 16px;
         color: #333;
       }
+
+      .password-modification input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+        color: #333;
+      }
       
       .password-modification button[type="submit"] {
         background-color: #00a2d1;
