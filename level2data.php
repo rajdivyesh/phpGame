@@ -22,26 +22,33 @@ if(isset($_POST['submit'])){
     echo "<br/>";
     // print_r($sorted_ans);
 
+    $array_comparison = array_diff($user_ip,$sorted_ans);
+
+    $count =count($array_comparison);
+
     if($_SESSION['user_lives']>=1){
-        if($user_ip == $sorted_ans){
-            $_SESSION['result']= "level2";
-            $_SESSION['scoreTime']= date("Y-m-d H:i:s");
-            echo "win";
-            header("Location: level2.php");
+        if($count == 6 AND ($user_ip!=$sorted_ans)){
+            echo "All your characters are different than ours";
+        }
+        else if ($count<6 AND $count>1){
+            echo "Some of your characters are different than ours";
         }
         else{
-            $_SESSION['user_lives'] = $_SESSION['user_lives']-1;
-            //echo "lives left".$_SESSION['user_lives'] ;
-            header("Location: level2.php");
+            if($user_ip == $sorted_ans){
+                $_SESSION['result']= "level2";
+                $_SESSION['scoreTime']= date("Y-m-d H:i:s");
+                echo "Your numbers have been correctly ordered in descending order";
+                header("Location: level2.php");
+            }
+            else{
+                $_SESSION['user_lives'] = $_SESSION['user_lives']-1;
+                echo "Your numbers have not been correctly ordered in descending order";
+                header("Location: level2.php");
+            }
         }
-    }
-    else{
-        echo "Sorry you are lost... Try again";
         
     }
     
-    
-
 }
 
 ?>
