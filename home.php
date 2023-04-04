@@ -48,7 +48,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           
             ?>
             <h3 style="color:Blue;">Arrange letters in alphabetical order:</h3>
-            <h2  style="color:red;"><?php $letter_display = random_chars(); echo $letter_display; ?></h2>
+            <h2  style="color:red;"><?php $letter_display = random_chars(); echo $letter_display;?></h2>
 
             <form method="post" action="level1.php" id ="gameLevel1">
                 <input type="hidden" name="letters_display" value="<?php echo $letter_display; ?>"/>

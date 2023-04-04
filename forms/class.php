@@ -1,7 +1,7 @@
 <?php
 define('hostname', 'localhost');  
 define('username', 'root');  
-define('password', '');  
+define('password', 'root');  
 define('database', 'kidsgames');
 
 class DB  

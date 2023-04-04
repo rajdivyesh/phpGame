@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hostname = 'localhost';
         $database = 'kidsgames';
         $username = 'root';
-        $password = ''; 
+        $password = 'root'; 
     $pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
 
     // Retrieve and validate form data

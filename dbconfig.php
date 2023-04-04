@@ -4,7 +4,7 @@ session_start();
 
 $DB_host = "localhost";
 $DB_user = "root";
-$DB_pass = "sysadm";
+$DB_pass = "root";
 $DB_name = "kidsgames";
 
 try

@@ -77,7 +77,7 @@ input[type="submit"]:hover {
             $hostname = 'localhost';
             $database = 'kidsgames';
             $username = 'root';
-            $password = '';
+            $password = 'root';
             $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
 
             // If the login form is submitted, attempt to authenticate the user

@@ -39,7 +39,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
         <!-- <a href="home.php">
             play again Level 1
         </a> -->
-        <a href="level5.php">
+        <a href="level3.php">
             Go to Level 3 "Ascending Numbers"
         </a></h3>
                 <?php
