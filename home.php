@@ -57,7 +57,17 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
                 <br>
                 <input type="submit" value="Submit" name="submit">
             </form>
+
+
             <?php
+if(isset($_GET['err'])){
+    ?>
+<h2>
+    <?php echo $_GET['err'];?>
+</h2>
+    <?php
+}
+
             }
         }
         else{
