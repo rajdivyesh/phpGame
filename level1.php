@@ -34,19 +34,20 @@ if(isset($_POST['submit'])){
         }
         else if ($count<6 AND $count>1){
             echo "Some of your characters are different than ours";
+            header("Location: home.php?err=chrdiff");
         }
         else{
             if($user_ip==$sorted_ans){
                 $_SESSION['result']= "level1";
                 $_SESSION['scoreTime']= date("Y-m-d H:i:s");
                 echo "Your numbers have been correctly ordered in ascending order";
-                header("Location: home.php");
+                header("Location: home.php?err=");
             }
             else{
                 $_SESSION['user_lives'] = $_SESSION['user_lives']-1;
                 $user->error = 1;
                 echo "Your numbers have not been correctly ordered in ascending order";
-                header("Location: home.php");
+                header("Location: home.php?err=");
             }
         }
         

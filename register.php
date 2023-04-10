@@ -12,12 +12,20 @@ if(isset($_POST['btn-signup']))
    $lastName = trim($_POST['lastName']);
    $userName = trim($_POST['userName']); 
    $password = trim($_POST['password']);
- 
+   $conpwd = trim($_POST['conPwd']);
+
+
    if($firstName=="") {
       $error[] = "provide first name !"; 
    }
+   else if(preg_match("/^[A-Z][a-zA-Z ]+$/", $firstName) === 0){
+      $error[] = "First name must be from letters, spaces and must not start with dash"; 
+   }
    else if($lastName=="") {
       $error[] = "provide  last name !"; 
+   }
+   else if(preg_match("/^[A-Z][a-zA-Z ]+$/", $lastName) === 0){
+      $error[] = "Last name must be from letters, spaces and must not start with dash"; 
    }
    else if($userName=="") {
     $error[] = "provide  user name !"; 
@@ -30,6 +38,9 @@ if(isset($_POST['btn-signup']))
    }
    else if(strlen($password) < 6){
       $error[] = "Password must be atleast 6 characters"; 
+   }
+   else if($password!=$conpwd){
+      $error[] = "Confirm password must be same as password"; 
    }
    else
    {
@@ -103,6 +114,9 @@ if(isset($_POST['btn-signup']))
             </div>
             <div class="form-group">
              <input type="password" class="form-control" name="password" placeholder="Enter Password" value="<?php if(isset($error)){echo $userName;}?>" />
+            </div>
+            <div class="form-group">
+             <input type="password" class="form-control" name="conPwd" placeholder="Confirm Password" value="<?php if(isset($error)){echo $userName;}?>" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
