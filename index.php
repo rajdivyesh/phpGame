@@ -3,22 +3,38 @@ require_once 'dbconfig.php';
 
 if($user->is_loggedin()!="")
 {
- $user->redirect('home.php');
+ $user->redirect('welcome.php');
 }
 
 if(isset($_POST['btn-login']))
 {
  $uname = $_POST['txt_uname'];
  $upass = $_POST['txt_password'];
-  
- if($user->login($uname,$upass))
- {
-  $user->redirect('home.php');
- }
- else
- {
-  $error = "Wrong Details !";
- } 
+ try
+    {
+         $stmt = $DB_con->prepare("SELECT userName FROM player WHERE userName=:userName");
+         $stmt->execute(array(':userName'=>$uname));
+         $row=$stmt->fetch(PDO::FETCH_ASSOC);
+         
+        //  if($row<0) {
+        //     $error = "It seems You are not regstered user!";
+        //  }
+        //  else
+        //  { 
+            if($user->login($uname,$upass))
+            {
+            $user->redirect('welcome.php');
+            }
+            else
+            {
+            $error = "check Username Or password";
+            } 
+        //  }
+    }
+    catch(PDOException $e)
+     {
+        echo $e->getMessage();
+     }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -66,5 +82,7 @@ if(isset($_POST['btn-login']))
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<?php include 'footer.php'; ?>
 </body>
 </html>

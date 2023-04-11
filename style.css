@@ -7,9 +7,13 @@ body
         background-color: #f7f7f7;
     
 }
-.container
-{
- margin-top:80px;
+
+
+.container {
+  margin-top: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
 }
 h2
 {
@@ -32,6 +36,7 @@ button
 }
 label
 {
+  
  font-family:Tahoma, Geneva, sans-serif;
  color:.00a9d1;
 }
@@ -90,6 +95,15 @@ a
  margin:0 auto;
 }
 
+
+.submit-btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
 
 
 
@@ -162,4 +176,7 @@ a
       .password-modification button[type="submit"]:hover {
         background-color: #0092bf;
       }
+      
+
+      
       

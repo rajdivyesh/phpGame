@@ -27,14 +27,14 @@ if(isset($_POST['submit'])){
     if($_SESSION['user_lives']>=1){
         if ($user_ip[0] == $sorted_ans[0] && $user_ip[1] == $sorted_ans[5])
         {
-                $_SESSION['result']= "level5";
-                $_SESSION['scoreTime']= date("Y-m-d H:i:s");
+                $_SESSION['result']= "level6";
                 echo "Your letters have been correctly identified";
-                header("Location: level5.php");
+                
+                header("Location: level6.php");
         }else{
             $_SESSION['user_lives']-- ;
             echo "Your letters have NOT been correctly identified";
-            header("Location: level5.php");
+            header("Location: level6.php");
         }   
         
     }

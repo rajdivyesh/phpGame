@@ -7,15 +7,31 @@ if(isset($_POST['btn-save']))
  $uname = $_POST['txt_uname'];
  $upass = $_POST['txt_password'];
  $newpass = $_POST['txt_newpassword'];
-  
- if($user->update_password($uname, $upass, $newpass))
- {
-  $user->redirect('index.php');
+ if($uname=="") {
+    $error = "provide  user name !"; 
+   }
+
+else if($upass=="") {
+      $error = "provide password !";
+   }
+else if(strlen($upass) < 6){
+      $error = "Password must be atleast 6 characters"; 
+   }
+else if($upass!=$newpass){
+      $error = "Confirm password must be same as password"; 
+   }
+else
+   {
+     
+        if($user->update_password($uname, $upass, $newpass))
+        {
+        $user->redirect('index.php');
+        }
+        else
+        {
+        $error = "Wrong Details !";
+        } 
  }
- else
- {
-  $error = "Wrong Details !";
- } 
 }
 ?>
 
@@ -67,5 +83,8 @@ if(isset($_POST['btn-save']))
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<?php include 'footer.php'; ?>
+
 </body>
 </html>

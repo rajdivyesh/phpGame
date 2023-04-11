@@ -11,8 +11,9 @@ if(isset($_POST['submit'])){
     
     $letters_display = $_POST['letters_display'];
     $user_ip = $_POST['letters'];
+    
     $letters_display = str_split($letters_display);
-    //$user_ip = str_split($user_ip);
+   // $user_ip = str_split($user_ip);
 
     $sorted_ans = $letters_display;
     sort($sorted_ans);
@@ -23,9 +24,9 @@ if(isset($_POST['submit'])){
    //$array_comparison = array_diff($user_ip,$sorted_ans);
 
     //$count =count($array_comparison);
-    
+
     if($_SESSION['user_lives']>=1){
-        if ($user_ip[0] == $sorted_ans[0] && $user_ip[1] == $sorted_ans[5])
+       if ($user_ip[0] == $sorted_ans[0] && $user_ip[1] == $sorted_ans[5])
         {
                 $_SESSION['result']= "level5";
                 $_SESSION['scoreTime']= date("Y-m-d H:i:s");
@@ -34,7 +35,7 @@ if(isset($_POST['submit'])){
         }else{
             $_SESSION['user_lives']-- ;
             echo "Your letters have NOT been correctly identified";
-            header("Location: level5.php");
+           header("Location: level5.php");
         }   
         
     }
