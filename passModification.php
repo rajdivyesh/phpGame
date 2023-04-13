@@ -7,10 +7,10 @@ if(isset($_POST['btn-save']))
  $uname = $_POST['txt_uname'];
  $upass = $_POST['txt_password'];
  $newpass = $_POST['txt_newpassword'];
+
  if($uname=="") {
     $error = "provide  user name !"; 
    }
-
 else if($upass=="") {
       $error = "provide password !";
    }
@@ -22,16 +22,15 @@ else if($upass!=$newpass){
    }
 else
    {
-     
         if($user->update_password($uname, $upass, $newpass))
         {
         $user->redirect('index.php');
         }
         else
         {
-        $error = "Wrong Details !";
+        $error = "Invalid username. Please try again.!";
         } 
- }
+    }
 }
 ?>
 
@@ -63,12 +62,12 @@ else
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Old Password</label>
+                        <label for="password">New Password</label>
                         <input type="password" name="txt_password" placeholder="Old Password" required class="form-control" />
                     </div>
 
                     <div class="form-group">
-                        <label for="newpassword">New Password</label>
+                        <label for="newpassword">Confirm New Password</label>
                         <input type="password" name="txt_newpassword" placeholder="New Password" required class="form-control" />
                     </div>
 

@@ -28,13 +28,12 @@ if(isset($_POST['submit'])){
         if ($user_ip[0] == $sorted_ans[0] && $user_ip[1] == $sorted_ans[5])
         {
                 $_SESSION['result']= "level6";
-                echo "Your letters have been correctly identified";
-                
-                header("Location: level6.php");
+                $chrdiff = "Your letters have been correctly identified";
+                header("Location: level6.php?err=$chrdiff");
         }else{
             $_SESSION['user_lives']-- ;
-            echo "Your letters have NOT been correctly identified";
-            header("Location: level6.php");
+            $chrdiff = "Your letters have NOT been correctly identified";
+            header("Location: level6.php?err=$chrdiff");
         }   
         
     }

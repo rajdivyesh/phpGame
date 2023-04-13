@@ -56,6 +56,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           
             ?>
 			<h3 style="color:Blue;">Arrange the numbers in ascending order:</h3>
+            <h4 style="color:Blue;">(Separate each numbers by coma "," )</h4>
 			<h2 style="color:red;"><?php $num_display = random_nums(); echo implode(" ", $num_display); ?></h2>
 
 			<form method="post" action="level3data.php" id="gameLevel3">

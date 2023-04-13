@@ -40,14 +40,12 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
         <a href="welcome.php">
             Restart Game
         </a></br>
-        <a href="index.php">
-            <?php
-            if($user->insertScore($_SESSION['result']="incomplete",$_SESSION['user_lives'],$_SESSION['user_session'])){
+        <a href="history.php">
+        <?php
+            if($user->insertScore($_SESSION['result']="completed",$_SESSION['user_lives'],$_SESSION['user_session'])){
                 $user->logout();
             }
-            ?>
-            Stop this session
-        </a>
+            ?>Quit</a>
     </h3>
                 <?php
             }

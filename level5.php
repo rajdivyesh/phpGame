@@ -66,6 +66,13 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
                 <input type="submit" value="Submit" name="submit" style="font-size: 18px;">
             </form>
             <?php
+            if(isset($_GET['err'])){
+                ?>
+            <h2>
+                <?php echo $_GET['err'];?>
+            </h2>
+                        <?php
+                        }
             }
         }
         else{

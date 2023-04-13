@@ -10,32 +10,26 @@ $user_id = $_SESSION['user_session'];
 if(isset($_POST['submit'])){
     
     $letters_display = $_POST['letters_display'];
-    $user_ip = $_POST['letters'];
-    
+    $letters = $_POST['letters'];
+    $user_ip = array_map('strtoupper', $letters); // convert to uppercase 
     $letters_display = str_split($letters_display);
-   // $user_ip = str_split($user_ip);
+    $letters = array_map('strtoupper', $letters); // convert to uppercase 
 
     $sorted_ans = $letters_display;
     sort($sorted_ans);
     echo "<br/>";
-    // print_r($sorted_ans);
-    var_dump($sorted_ans);
-    var_dump($user_ip);
-   //$array_comparison = array_diff($user_ip,$sorted_ans);
-
-    //$count =count($array_comparison);
 
     if($_SESSION['user_lives']>=1){
-       if ($user_ip[0] == $sorted_ans[0] && $user_ip[1] == $sorted_ans[5])
+       if ($letters[0] == $sorted_ans[0] && $letters[1] == $sorted_ans[5])
         {
                 $_SESSION['result']= "level5";
                 $_SESSION['scoreTime']= date("Y-m-d H:i:s");
-                echo "Your letters have been correctly identified";
-                header("Location: level5.php");
+                $chrdiff = "Your letters have been correctly identified";
+                header("Location: level5.php?err=$chrdiff");
         }else{
             $_SESSION['user_lives']-- ;
-            echo "Your letters have NOT been correctly identified";
-           header("Location: level5.php");
+            $chrdiff = "Your letters have NOT been correctly identified";
+           header("Location: level5.php?err=$chrdiff");
         }   
         
     }
